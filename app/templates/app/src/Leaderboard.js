@@ -26,7 +26,7 @@ class Leaderboard extends Component {
 
   sortScoreby(data){
     this.setState({sort:data})
-    console.log("sorting list by", this.state.sort)
+    console.log("sorting list by", data)
   }
 
   refreshList = () => {
@@ -42,7 +42,11 @@ class Leaderboard extends Component {
   renderItems = () => {
     const { scores } = this.state;
     console.log("render", scores);
-    const data = scores.filter((item)=>(item.name.toLowerCase().includes(this.state.search.toLowerCase())));
+    var data = scores.filter((item)=>(item.name.toLowerCase().includes(this.state.search.toLowerCase())));
+    var sort = this.state.sort
+    
+    data = data.sort((a,b) =>  a[sort]-b[sort] )
+    console.log('after sorting', data)
     return data.map((item) => (
       <li
         key={item.rollno}
@@ -63,7 +67,7 @@ class Leaderboard extends Component {
         <span className={`todo-title mr-2 completed-todo`}>{item.total}</span>
 
         <span className={`todo-title mr-2 completed-todo`}>
-          {item.percentage} %
+          {Number((item.percentage).toFixed(1))} %
         </span>
 
         
@@ -76,7 +80,7 @@ class Leaderboard extends Component {
     return (
       <main className="container">
         <h1 className="text-gray text-uppercase text-center my-4">
-          Leaderboard
+          <Link to="/">Leaderboard </Link>
         </h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
@@ -88,35 +92,36 @@ class Leaderboard extends Component {
               </div>
 
               <ul className="list-group list-group-flush border-top-0">
+                <small>click on header to sort</small>
                 <li
 
                   className="list-group-item d-flex justify-content-between align-items-center"
                 >
-                  <span className={`todo-title mr-2 completed-todo`} onChange={()=>this.sortScoreby('rollno')} >
+                  <span className={`todo-title mr-2 completed-todo gray`} onClick={()=>this.sortScoreby('rollno')} >
                     rollno
                   </span>
 
-                  <span className={`todo-title mr-2 completed-todo`} onChange={()=>{this.sortScoreby('name')}}>
+                  <span className={`todo-title mr-2 completed-todo`} onClick={()=>{this.sortScoreby('name')}}>
                     name
                   </span>
 
-                  <span className={`todo-title mr-2 completed-todo`} onChange={()=>{this.sortScoreby('maths')}}>
+                  <span className={`todo-title mr-2 completed-todo`} onClick={()=>{this.sortScoreby('maths')}}>
                     maths
                   </span>
 
-                  <span className={`todo-title mr-2 completed-todo`} onChange={()=>{this.sortScoreby('chemistry')}}>
+                  <span className={`todo-title mr-2 completed-todo`} onClick={()=>{this.sortScoreby('chemistry')}}>
                     chemistry
                   </span>
 
-                  <span className={`todo-title mr-2 completed-todo`} onChange={()=>{this.sortScoreby('physics')}}>
+                  <span className={`todo-title mr-2 completed-todo`} onClick={()=>{this.sortScoreby('physics')}}>
                     physics
                   </span>
 
-                  <span className={`todo-title mr-2 completed-todo`} onChange={()=>{this.sortScoreby('total')}}>
+                  <span className={`todo-title mr-2 completed-todo`} onClick={()=>{this.sortScoreby('total')}}>
                     total
                   </span>
 
-                  <span className={`todo-title mr-2 completed-todo`} onChange={()=>{this.sortScoreby('percentage')}}>
+                  <span className={`todo-title mr-2 completed-todo`} onClick={()=>{this.sortScoreby('percentage')}}>
                     percentage
                   </span>
 

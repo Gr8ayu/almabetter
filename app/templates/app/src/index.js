@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // import { browserHistory } from 'react-router';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Leaderboard from './Leaderboard';
+import AddScore from './AddScore';
 // import Routes from './routes';
 
 
@@ -19,7 +20,7 @@ const Routing = () => {
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/leaderboard" component={Leaderboard} />
-        <Route path="/addscore" component={Leaderboard} />
+        <Route path="/addscore" component={AddScore} />
       </Switch>
       
     </Router>

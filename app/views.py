@@ -43,7 +43,7 @@ class addscore(APIView):
         
         if serializer.is_valid():
         
-            # serializer.save()  
+            serializer.save()  
             return Response(serializer.data)
         else:
             # print(serializer.errors)
