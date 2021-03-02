@@ -1,1 +1,1 @@
-web: gunicorn almabetter.wsgi --log-level 5 --log-file - 
+web: gunicorn almabetter.wsgi --log-level debug --log-file - 
